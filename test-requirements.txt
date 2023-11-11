@@ -1,5 +1,5 @@
 
-git+https://github.com/OCA/partner-contacts@14.0#subdirectory=setup/partner_contact_in_several_companies
+git+https://github.com/OCA/partner-contact@14.0#subdirectory=setup/partner_contact_in_several_companies
 git+https://github.com/open-synergy/opnsynid-server-tools@14.0#subdirectory=setup/ssi_frequency
 git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_decorator
 git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_localdict_mixin
