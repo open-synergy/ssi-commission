@@ -9,7 +9,7 @@
     <field name="name">Commission Type</field>
     <field
             name="category_id"
-            ref="ssi_risk_management.risk_management_configurator_module_category"
+            ref="commission_management_configurator_module_category"
         />
     <field
             name="users"
@@ -21,7 +21,7 @@
     <field name="name">Commission Item</field>
     <field
             name="category_id"
-            ref="ssi_risk_management.risk_management_configurator_module_category"
+            ref="commission_management_configurator_module_category"
         />
     <field
             name="users"
