@@ -16,6 +16,7 @@
         "ssi_transaction_done_mixin",
         "ssi_transaction_cancel_mixin",
         "ssi_transaction_open_mixin",
+        "ssi_transaction_partner_mixin",
         "ssi_localdict_mixin",
         "ssi_account_account_m2o_configurator_mixin",
         "ssi_account_journal_m2o_configurator_mixin",
@@ -50,6 +51,9 @@
         "views/commission_type_views.xml",
         "views/commission_item_views.xml",
         "views/commission_views.xml",
+        "views/marketing_commission_item_views.xml",
+        "views/marketing_commission_type_views.xml",
+        "views/marketing_commission_views.xml",
     ],
     "demo": [],
 }
