@@ -24,6 +24,7 @@ git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_res_us
 git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_transaction_date_duration_mixin
 git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_transaction_total_mixin
 git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_transaction_date_due_mixin
+git+https://github.com/open-synergy/ssi-mixin@14.0#subdirectory=setup/ssi_transaction_partner_mixin
 git+https://github.com/open-synergy/ssi-financial-accounting@14.0#subdirectory=setup/ssi_account_account_m2o_configurator_mixin
 git+https://github.com/open-synergy/ssi-financial-accounting@14.0#subdirectory=setup/ssi_account_journal_m2o_configurator_mixin
 git+https://github.com/open-synergy/ssi-financial-accounting@14.0#subdirectory=setup/ssi_financial_accounting
