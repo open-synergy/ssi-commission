@@ -16,6 +16,7 @@
         "ssi_transaction_done_mixin",
         "ssi_transaction_cancel_mixin",
         "ssi_transaction_open_mixin",
+        "ssi_transaction_partner_mixin",
         "ssi_localdict_mixin",
         "ssi_account_account_m2o_configurator_mixin",
         "ssi_account_journal_m2o_configurator_mixin",
