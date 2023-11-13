@@ -18,7 +18,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[ssi_commission](ssi_commission/) | 14.0.1.0.0 |  | Commission Management
+[ssi_commission](ssi_commission/) | 14.0.1.1.0 |  | Commission Management
 
 [//]: # (end addons)
 
