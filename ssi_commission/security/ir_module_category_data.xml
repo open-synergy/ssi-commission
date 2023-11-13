@@ -51,4 +51,21 @@
             ref="commission_management_data_ownership_module_category"
         />
 </record>
+
+<!-- Marketing Commission -->
+<record id="marketing_commission_module_category" model="ir.module.category">
+    <field name="name">Commission</field>
+    <field name="parent_id" ref="commission_management_workflow_module_category" />
+</record>
+
+<record
+        id="marketing_commission_data_ownership_module_category"
+        model="ir.module.category"
+    >
+    <field name="name">Commission</field>
+    <field
+            name="parent_id"
+            ref="commission_management_data_ownership_module_category"
+        />
+</record>
 </odoo>

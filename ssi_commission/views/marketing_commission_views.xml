@@ -3,9 +3,9 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
-<record id="commission_view_search" model="ir.ui.view">
-    <field name="name">commission - search</field>
-    <field name="model">commission</field>
+<record id="marketing_commission_view_search" model="ir.ui.view">
+    <field name="name">marketing_commission - search</field>
+    <field name="model">marketing_commission</field>
     <field
             name="inherit_id"
             ref="ssi_transaction_mixin.mixin_transaction_view_search"
@@ -17,15 +17,16 @@
     </field>
 </record>
 
-<record id="commission_view_tree" model="ir.ui.view">
-    <field name="name">commission - tree</field>
-    <field name="model">commission</field>
+<record id="marketing_commission_view_tree" model="ir.ui.view">
+    <field name="name">marketing_commission - tree</field>
+    <field name="model">marketing_commission</field>
     <field name="mode">primary</field>
     <field name="inherit_id" ref="ssi_transaction_mixin.mixin_transaction_view_tree" />
     <field name="arch" type="xml">
         <data>
             <xpath expr="//field[@name='company_id']" position="after">
-                <field name="salesperson_id" widget="many2one_avatar" />
+                <field name="partner_id" widget="many2one_avatar" />
+                <field name="contact_partner_id" widget="many2one_avatar" />
                 <field name="date" />
                 <field name="date_due" optional="show" />
                 <field name="type_id" />
@@ -57,9 +58,9 @@
     </field>
 </record>
 
-<record id="commission_view_form" model="ir.ui.view">
-    <field name="name">commission - form</field>
-    <field name="model">commission</field>
+<record id="marketing_commission_view_form" model="ir.ui.view">
+    <field name="name">marketing_commission - form</field>
+    <field name="model">marketing_commission</field>
     <field name="mode">primary</field>
     <field name="inherit_id" ref="ssi_transaction_mixin.mixin_transaction_view_form" />
     <field name="arch" type="xml">
@@ -74,20 +75,24 @@
                     />
                 <field name="currency_id" domain="[('id','in',allowed_currency_ids)]" />
                 <field
-                        name="allowed_salesperson_ids"
+                        name="allowed_partner_ids"
                         widget="many2many_tags"
                         invisible="1"
                     />
                 <field
-                        name="salesperson_id"
+                        name="partner_id"
                         widget="many2one_avatar"
-                        domain="[('id','in',allowed_salesperson_ids)]"
+                        domain="[('id','in',allowed_partner_ids)]"
                     />
-                <field name="partner_id" invisible="1" />
                 <field
-                        name="all_salesperson_ids"
+                        name="allowed_contact_ids"
                         widget="many2many_tags"
                         invisible="1"
+                    />
+                <field
+                        name="contact_partner_id"
+                        widget="many2one_avatar"
+                        domain="[('id','in',allowed_contact_ids)]"
                     />
             </xpath>
             <xpath expr="//group[@name='header_right']" position="inside">
@@ -274,19 +279,19 @@
     </field>
 </record>
 
-<record id="commission_action" model="ir.actions.act_window">
+<record id="marketing_commission_action" model="ir.actions.act_window">
     <field name="name">Commission</field>
     <field name="type">ir.actions.act_window</field>
-    <field name="res_model">commission</field>
+    <field name="res_model">marketing_commission</field>
     <field name="view_mode">tree,form</field>
 </record>
 
 <menuitem
-        id="commission_menu"
+        id="marketing_commission_menu"
         name="Commission"
-        parent="menu_root_sales_commission"
-        action="commission_action"
-        groups="commission_viewer_group"
+        parent="menu_root_marketing_commission"
+        action="marketing_commission_action"
+        groups="marketing_commission_viewer_group"
         sequence="110"
     />
 

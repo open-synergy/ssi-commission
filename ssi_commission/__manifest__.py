@@ -50,6 +50,9 @@
         "views/commission_type_views.xml",
         "views/commission_item_views.xml",
         "views/commission_views.xml",
+        "views/marketing_commission_item_views.xml",
+        "views/marketing_commission_type_views.xml",
+        "views/marketing_commission_views.xml",
     ],
     "demo": [],
 }
