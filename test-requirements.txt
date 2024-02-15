@@ -1,7 +1,7 @@
 odoo14-addon-partner-contact-in-several-companies
 odoo14-addon-ssi-frequency
 odoo14-addon-ssi-decorator
-odoo14-addon-ssi-locadict-mixin
+odoo14-addon-ssi-localdict-mixin
 odoo14-addon-ssi-master-data-mixin
 odoo14-addon-ssi-transaction-cancel-mixin
 odoo14-addon-ssi-transaction-confirm-mixin
