@@ -60,7 +60,7 @@
 <menuitem
         id="commission_item_menu"
         name="Items"
-        parent="menu_commission_management_configuration"
+        parent="menu_sales_commission_configuration"
         action="commission_item_action"
         groups="commission_item_group"
         sequence="120"

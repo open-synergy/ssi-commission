@@ -40,12 +40,12 @@
 
 <!-- Commission -->
 <record id="commission_module_category" model="ir.module.category">
-    <field name="name">Commission</field>
+    <field name="name">Sales Commission</field>
     <field name="parent_id" ref="commission_management_workflow_module_category" />
 </record>
 
 <record id="commission_data_ownership_module_category" model="ir.module.category">
-    <field name="name">Commission</field>
+    <field name="name">Sales Commission</field>
     <field
             name="parent_id"
             ref="commission_management_data_ownership_module_category"
@@ -54,7 +54,7 @@
 
 <!-- Marketing Commission -->
 <record id="marketing_commission_module_category" model="ir.module.category">
-    <field name="name">Commission</field>
+    <field name="name">Marketing Commission</field>
     <field name="parent_id" ref="commission_management_workflow_module_category" />
 </record>
 
@@ -62,7 +62,7 @@
         id="marketing_commission_data_ownership_module_category"
         model="ir.module.category"
     >
-    <field name="name">Commission</field>
+    <field name="name">Marketing Commission</field>
     <field
             name="parent_id"
             ref="commission_management_data_ownership_module_category"

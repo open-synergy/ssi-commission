@@ -39,14 +39,14 @@
 
 <menuitem
         id="menu_sales_commission_configuration"
-        name="Sales"
+        name="Sales Commission"
         parent="menu_commission_management_configuration"
         sequence="110"
     />
 
 <menuitem
         id="menu_marketing_commission_configuration"
-        name="Marketing"
+        name="Marketing Commission"
         parent="menu_commission_management_configuration"
         sequence="120"
     />

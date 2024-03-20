@@ -61,7 +61,7 @@
 <menuitem
         id="marketing_commission_type_menu"
         name="Types"
-        parent="menu_sales_commission_configuration"
+        parent="menu_marketing_commission_configuration"
         action="marketing_commission_type_action"
         groups="marketing_commission_type_group"
         sequence="110"

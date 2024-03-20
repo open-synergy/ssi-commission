@@ -128,6 +128,11 @@ class MarketingCommission(models.Model):
         comodel_name="marketing_commission.detail",
         inverse_name="commission_id",
         readonly=True,
+        states={
+            "draft": [
+                ("readonly", False),
+            ],
+        },
     )
     tax_ids = fields.One2many(
         string="Taxes",
@@ -199,6 +204,10 @@ class MarketingCommission(models.Model):
             record.detail_ids.unlink()
             record._compute_computation_item()
             record._compute_commission()
+            record._recompute_standard_tax()
+
+    def action_compute_tax(self):
+        for record in self:
             record._recompute_standard_tax()
 
     def _compute_commission(self):
