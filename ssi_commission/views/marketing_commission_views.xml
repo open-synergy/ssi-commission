@@ -121,13 +121,14 @@
                         />
                     <field name="detail_ids">
                         <tree editable="top">
-                            <field name="pricelist_id" invisible="1" />
-                            <field name="product_id" invisible="1" />
+
                             <field name="computation_item_id" invisible="1" />
                             <field name="item_id" />
+                            <field name="pricelist_id" />
+                            <field name="product_id" />
                             <field name="currency_id" invisible="1" />
-                            <field name="name" invisible="1" />
-                            <field name="usage_id" invisible="1" />
+                            <field name="name" />
+                            <field name="usage_id" />
                             <field name="account_id" />
                             <field name="analytic_account_id" />
                             <field name="uom_quantity" string="Qty." />
@@ -142,6 +143,9 @@
                                 />
                             <field name="price_unit" />
                             <field name="price_subtotal" string="Subtotal" />
+                            <field name="tax_ids" widget="many2many_tags" />
+                            <field name="price_tax" />
+                            <field name="price_total" />
                         </tree>
                         <form>
                             <group name="detail_1" colspan="4" col="2">
@@ -249,6 +253,14 @@
                             <field name="realized" />
                         </group>
                     </group>
+                    <button
+                            name="action_compute_tax"
+                            string="Compute Tax"
+                            type="object"
+                            class="oe_highlight"
+                            icon="fa-gear"
+                            attrs="{'invisible':[('state','!=','draft')]}"
+                        />
                     <field name="tax_ids">
                         <tree editable="top">
                             <field name="tax_id" />
@@ -280,7 +292,7 @@
 </record>
 
 <record id="marketing_commission_action" model="ir.actions.act_window">
-    <field name="name">Commission</field>
+    <field name="name">Marketing Commissions</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">marketing_commission</field>
     <field name="view_mode">tree,form</field>

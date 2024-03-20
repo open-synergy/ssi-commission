@@ -42,7 +42,7 @@ class MarketingCommissionDetail(models.Model):
     computation_item_id = fields.Many2one(
         string="Computation Item",
         comodel_name="marketing_commission.item_computation",
-        required=True,
+        required=False,
     )
     item_id = fields.Many2one(
         related="computation_item_id.item_id",

@@ -58,7 +58,7 @@
 <menuitem
         id="marketing_commission_item_menu"
         name="Items"
-        parent="menu_commission_management_configuration"
+        parent="menu_marketing_commission_configuration"
         action="marketing_commission_item_action"
         groups="marketing_commission_item_group"
         sequence="120"
