@@ -206,6 +206,18 @@ class MarketingCommission(models.Model):
             record._compute_commission()
             record._recompute_standard_tax()
 
+    def action_recompute_realization(self):
+        for record in self.sudo():
+            record._recompute_realization()
+
+    def _recompute_realization(self):
+        self.ensure_one()
+
+        if self.state == "open" and self.realized:
+            self.ation_done()
+        elif self.state == "done" and not self.realized:
+            self.action_open()
+
     def action_compute_tax(self):
         for record in self:
             record._recompute_standard_tax()
