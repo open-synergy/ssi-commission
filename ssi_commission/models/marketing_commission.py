@@ -214,7 +214,7 @@ class MarketingCommission(models.Model):
         self.ensure_one()
 
         if self.state == "open" and self.realized:
-            self.ation_done()
+            self.action_done()
         elif self.state == "done" and not self.realized:
             self.action_open()
 
