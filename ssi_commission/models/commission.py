@@ -80,7 +80,7 @@ class Commission(models.Model):
     _create_sequence_state = "open"
 
     _normal_amount = "credit"
-
+    _need_date_due = True
     _amount_currency_field_name = "amount_total"
 
     # Tax computation
