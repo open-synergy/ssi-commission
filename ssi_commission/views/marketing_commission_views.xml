@@ -56,8 +56,8 @@
                     />
                 <field
                         name="amount_residual"
-                        string="Realized"
-                        sum="Total Realized"
+                        string="Residual"
+                        sum="Total Residual"
                         optional="show"
                     />
             </xpath>
