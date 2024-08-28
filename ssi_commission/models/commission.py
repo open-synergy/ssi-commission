@@ -257,6 +257,10 @@ class Commission(models.Model):
             record._compute_commission()
             record._recompute_standard_tax()
 
+    def action_compute_tax(self):
+        for record in self:
+            record._recompute_standard_tax()
+
     def _compute_commission(self):
         self.ensure_one()
         for detail in self.detail_ids:
