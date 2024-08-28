@@ -150,6 +150,11 @@ class Commission(models.Model):
         comodel_name="commission.detail",
         inverse_name="commission_id",
         readonly=True,
+        states={
+            "draft": [
+                ("readonly", False),
+            ],
+        },
     )
     tax_ids = fields.One2many(
         string="Taxes",

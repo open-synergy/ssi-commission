@@ -117,12 +117,12 @@
                     <field name="detail_ids">
                         <tree editable="top">
                             <field name="pricelist_id" invisible="1" />
-                            <field name="product_id" invisible="1" />
-                            <field name="computation_item_id" invisible="1" />
+                            <field name="product_id" />
+                            <field name="computation_item_id" />
                             <field name="item_id" />
                             <field name="currency_id" invisible="1" />
-                            <field name="name" invisible="1" />
-                            <field name="usage_id" invisible="1" />
+                            <field name="name" />
+                            <field name="usage_id" />
                             <field name="account_id" />
                             <field name="analytic_account_id" />
                             <field name="uom_quantity" string="Qty." />
