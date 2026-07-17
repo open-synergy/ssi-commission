@@ -32,3 +32,4 @@ odoo14-addon-ssi-voucher-mixin
 odoo14-addon-ssi-voucher-bank-cash
 odoo14-addon-ssi-voucher-cheque
 odoo14-addon-ssi-work-log-mixin
+odoo-yaml-test
