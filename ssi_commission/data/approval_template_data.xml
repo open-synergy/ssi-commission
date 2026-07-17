@@ -2,8 +2,7 @@
 <!-- Copyright 2022 OpenSynergy Indonesia
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0-standalone.html). -->
-<odoo>
-<data noupdate="1">
+<odoo noupdate="1">
 <record id="approval_template_commission" model="approval.template">
     <field name="name">Standard</field>
     <field name="model_id" ref="model_commission" />
@@ -16,9 +15,9 @@
     <field name="template_id" ref="approval_template_commission" />
     <field name="approver_selection_method">use_group</field>
     <field
-                name="approver_group_ids"
-                eval="[(6,0,[ref('commission_validator_group')])]"
-            />
+            name="approver_group_ids"
+            eval="[(6,0,[ref('commission_validator_group')])]"
+        />
 </record>
 
 <record id="approval_template_marketing_commission" model="approval.template">
@@ -30,15 +29,14 @@
     <field name="validate_sequence" eval="1" />
 </record>
 <record
-            id="approval_template_marketing_commission_detail"
-            model="approval.template_detail"
-        >
+        id="approval_template_marketing_commission_detail"
+        model="approval.template_detail"
+    >
     <field name="template_id" ref="approval_template_marketing_commission" />
     <field name="approver_selection_method">use_group</field>
     <field
-                name="approver_group_ids"
-                eval="[(6,0,[ref('marketing_commission_validator_group')])]"
-            />
+            name="approver_group_ids"
+            eval="[(6,0,[ref('marketing_commission_validator_group')])]"
+        />
 </record>
-</data>
 </odoo>
