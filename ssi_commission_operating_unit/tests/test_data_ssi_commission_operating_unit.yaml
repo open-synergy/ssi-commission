@@ -1,0 +1,304 @@
+scenarios:
+  - name: "Create Commission with Operating Unit"
+    steps:
+      - step: "Search general journal"
+        action: "search"
+        model: "account.journal"
+        domain:
+          - ["type", "=", "general"]
+        save_as: "journal"
+        limit: 1
+        order: "id asc"
+
+      - step: "Create commission account"
+        action: "create"
+        model: "account.account"
+        save_as: "account"
+        values:
+          name: "OU Commission Expense Account 1"
+          code: "CMOU1A1"
+          user_type_id: "REF: account.data_account_type_expenses"
+          internal_type: "other"
+
+      - step: "Create commission type"
+        action: "create"
+        model: "commission_type"
+        save_as: "ctype"
+        values:
+          name: "Test Commission Type OU 1"
+          code: "CMOU1T1"
+
+      - step: "Create commission with operating_unit_id"
+        action: "create"
+        model: "commission"
+        save_as: "record"
+        as_user: "base.user_admin"
+        values:
+          date: 2026-01-15
+          date_start: 2026-01-15
+          date_end: 2026-01-31
+          date_due: 2026-02-15
+          salesperson_id: "REF: base.user_admin"
+          type_id: "REC: ctype.id"
+          journal_id: "REC: journal.id"
+          account_id: "REC: account.id"
+          operating_unit_id: "REF: operating_unit.main_operating_unit"
+
+      - step: "Assert operating_unit_id is set"
+        action: "assert"
+        target: "record"
+        asserts:
+          operating_unit_id:
+            type: "value"
+            operator: "is_truthy"
+
+  - name: "Create Marketing Commission with Operating Unit"
+    steps:
+      - step: "Search general journal"
+        action: "search"
+        model: "account.journal"
+        domain:
+          - ["type", "=", "general"]
+        save_as: "journal"
+        limit: 1
+        order: "id asc"
+
+      - step: "Create marketing commission account"
+        action: "create"
+        model: "account.account"
+        save_as: "account"
+        values:
+          name: "OU Marketing Commission Account 1"
+          code: "CMOU2A1"
+          user_type_id: "REF: account.data_account_type_revenue"
+          internal_type: "other"
+
+      - step: "Create marketing commission type"
+        action: "create"
+        model: "marketing_commission_type"
+        save_as: "mctype"
+        values:
+          name: "Test Marketing Commission Type OU 1"
+          code: "CMOU2T1"
+
+      - step: "Create marketer partner"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "OU Marketing Commission Partner 1"
+          is_company: true
+
+      - step: "Create marketing_commission with operating_unit_id"
+        action: "create"
+        model: "marketing_commission"
+        save_as: "record"
+        as_user: "base.user_admin"
+        values:
+          date: 2026-01-15
+          date_start: 2026-01-15
+          date_end: 2026-01-31
+          date_due: 2026-02-15
+          partner_id: "REC: partner.id"
+          type_id: "REC: mctype.id"
+          journal_id: "REC: journal.id"
+          account_id: "REC: account.id"
+          operating_unit_id: "REF: operating_unit.main_operating_unit"
+
+      - step: "Assert operating_unit_id is set"
+        action: "assert"
+        target: "record"
+        asserts:
+          operating_unit_id:
+            type: "value"
+            operator: "is_truthy"
+
+  - name: "User without operating unit access cannot read or write commission"
+    steps:
+      - step: "Search general journal"
+        action: "search"
+        model: "account.journal"
+        domain:
+          - ["type", "=", "general"]
+        save_as: "journal"
+        limit: 1
+        order: "id asc"
+
+      - step: "Create commission account"
+        action: "create"
+        model: "account.account"
+        save_as: "account"
+        values:
+          name: "OU Commission Expense Account 2"
+          code: "CMOU3A1"
+          user_type_id: "REF: account.data_account_type_expenses"
+          internal_type: "other"
+
+      - step: "Create commission type"
+        action: "create"
+        model: "commission_type"
+        save_as: "ctype"
+        values:
+          name: "Test Commission Type OU 2"
+          code: "CMOU3T1"
+
+      - step: "Create restricted operating unit"
+        action: "create"
+        model: "operating.unit"
+        save_as: "ou_restricted"
+        values:
+          name: "OU Restricted Test Commission"
+          code: "OURESTRICTEDCM"
+          partner_id: "REC: company.partner_id.id"
+
+      - step: "Create user without access to main operating unit"
+        action: "create"
+        model: "res.users"
+        save_as: "restricted_user"
+        values:
+          name: "Restricted OU User Commission"
+          login: "restricted_ou_user_commission@example.com"
+          groups_id:
+            - - 6
+              - 0
+              - - "REF: base.group_user"
+                - "REF: ssi_commission.commission_user_group"
+                - "REF: ssi_commission_operating_unit.commission_ou_group"
+          assigned_operating_unit_ids:
+            - - 6
+              - 0
+              - - "REC: ou_restricted.id"
+
+      - step: "Create commission with main operating unit"
+        action: "create"
+        model: "commission"
+        save_as: "record"
+        as_user: "base.user_admin"
+        values:
+          date: 2026-01-16
+          date_start: 2026-01-16
+          date_end: 2026-01-31
+          date_due: 2026-02-16
+          salesperson_id: "REF: base.user_admin"
+          type_id: "REC: ctype.id"
+          journal_id: "REC: journal.id"
+          account_id: "REC: account.id"
+          operating_unit_id: "REF: operating_unit.main_operating_unit"
+
+      - step: "Restricted user cannot read the record"
+        action: "call"
+        target: "record"
+        method: "read"
+        args:
+          - - "date"
+        as_user: "restricted_user"
+        expect_error:
+          type: "AccessError"
+
+      - step: "Restricted user cannot write the record"
+        action: "write"
+        target: "record"
+        as_user: "restricted_user"
+        expect_error:
+          type: "AccessError"
+        values:
+          date: 2026-01-20
+
+  - name: "User without operating unit access cannot read or write marketing_commission"
+    steps:
+      - step: "Search general journal"
+        action: "search"
+        model: "account.journal"
+        domain:
+          - ["type", "=", "general"]
+        save_as: "journal"
+        limit: 1
+        order: "id asc"
+
+      - step: "Create marketing commission account"
+        action: "create"
+        model: "account.account"
+        save_as: "account"
+        values:
+          name: "OU Marketing Commission Account 2"
+          code: "CMOU4A1"
+          user_type_id: "REF: account.data_account_type_revenue"
+          internal_type: "other"
+
+      - step: "Create marketing commission type"
+        action: "create"
+        model: "marketing_commission_type"
+        save_as: "mctype"
+        values:
+          name: "Test Marketing Commission Type OU 2"
+          code: "CMOU4T1"
+
+      - step: "Create marketer partner"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "OU Marketing Commission Partner 2"
+          is_company: true
+
+      - step: "Create restricted operating unit"
+        action: "create"
+        model: "operating.unit"
+        save_as: "ou_restricted"
+        values:
+          name: "OU Restricted Test Marketing Commission"
+          code: "OURESTRICTEDMC"
+          partner_id: "REC: company.partner_id.id"
+
+      - step: "Create user without access to main operating unit"
+        action: "create"
+        model: "res.users"
+        save_as: "restricted_user"
+        values:
+          name: "Restricted OU User Marketing Commission"
+          login: "restricted_ou_user_marketing_commission@example.com"
+          groups_id:
+            - - 6
+              - 0
+              - - "REF: base.group_user"
+                - "REF: ssi_commission.marketing_commission_user_group"
+                - "REF: ssi_commission_operating_unit.marketing_commission_ou_group"
+          assigned_operating_unit_ids:
+            - - 6
+              - 0
+              - - "REC: ou_restricted.id"
+
+      - step: "Create marketing_commission with main operating unit"
+        action: "create"
+        model: "marketing_commission"
+        save_as: "record"
+        as_user: "base.user_admin"
+        values:
+          date: 2026-01-16
+          date_start: 2026-01-16
+          date_end: 2026-01-31
+          date_due: 2026-02-16
+          partner_id: "REC: partner.id"
+          type_id: "REC: mctype.id"
+          journal_id: "REC: journal.id"
+          account_id: "REC: account.id"
+          operating_unit_id: "REF: operating_unit.main_operating_unit"
+
+      - step: "Restricted user cannot read the record"
+        action: "call"
+        target: "record"
+        method: "read"
+        args:
+          - - "date"
+        as_user: "restricted_user"
+        expect_error:
+          type: "AccessError"
+
+      - step: "Restricted user cannot write the record"
+        action: "write"
+        target: "record"
+        as_user: "restricted_user"
+        expect_error:
+          type: "AccessError"
+        values:
+          date: 2026-01-20
